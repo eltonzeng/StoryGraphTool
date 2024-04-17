@@ -1,49 +1,105 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "My San Francisco",
+    "Credits": "Created by Adam Smith (amsmith@ucsc.edu), edited by Elton Zeng (ezeng2@ucsc.edu)",
+    "InitialLocation": "Golden Gate Bridge",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "Golden Gate Bridge": {
+            "Body": "Welcome to the Golden Gate Bridge, the most internationally recognized symbol of San Francisco.",
             "Choices": [
                 {
                     "Text": "South",
-                    "Target": "Porter"
+                    "Target": "Bay Bridge"
                 }
             ]
         },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
+        "Bay Bridge": {
+            "Body": "The Bay Bridge, where San Francisco connects to famous cities like Oakland and Berkeley.",
             "Choices": [
                 {
                     "Text": "North",
-                    "Target": "Kresge"
+                    "Target": "Golden Gate Bridge"
                 },
                 {
                     "Text": "South",
-                    "Target": "Rachel Carson"
+                    "Target": "The Mission"
                 }
             ]
         },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
+        "The Mission": {
+            "Body": "This is the Mission, where George R. Moscone Elementary school is, and the district with some of the most hustle and bustle in San Francisco.",
             "Choices": [
                 {
                     "Text": "North",
-                    "Target": "Porter"
+                    "Target": "Bay Bridge"
                 },
                 {
                     "Text": "South",
-                    "Target": "Oakes"
+                    "Target": "Inner Parkside"
+                },
+                {
+                    "Text": "Talk to Shawn",
+                    "Key": "ShawnKey",
+                    "KeyText": "Shawn liked talking to you!",
+                    "Target": "Inner Parkside"
                 }
             ]
         },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
+        "Inner Parkside": {
+            "Body": "This is the Inner Parkside, where Herbert Hoover Middle School is, a place of great change.",
             "Choices": [
                 {
                     "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Target": "The Mission"
+                },
+                {
+                    "Text": "South",
+                    "Target": "Glen Park"
+                }
+            ]
+        },
+        "Glen Park": {
+            "Body": "This is Glen Park, where Ruth Asawa School of the Arts is, where I fueled my creative passion of singing.",
+            "Choices": [
+                {
+                    "Text": "North",
+                    "Target": "Inner Parkside"
+                },
+                {
+                    "Text": "South",
+                    "Target": "Portola"
+                }
+            ]
+        },
+        "Portola": {
+            "Body": "Welcome to the Portola, San Francisco's Garden District, my childhood.",
+            "Choices": [
+                {
+                    "Text": "North",
+                    "Target": "Glen Park"
+                },
+                {
+                    "Text": "South",
+                    "Target": "Beyond"
+                },
+                {
+                    "Text": "Tomato Egg",
+                    "Action": "eatTomatoEgg",
+                    "Target": "Beyond"
+                },
+                {
+                    "Text": "Talked with someone?",
+                    "Target": "Garden Creamery",
+                    "NeedsKey": "ShawnTalk",
+                    "LockedMessage": "Have you talked to Shawn?"
+                }
+            ]
+        },
+        "Garden Creamery": {
+            "Body": "You've unlocked the Garden Creamery! You've been working here the past couple summers in the Mission.",
+            "Choices": [
+                {
+                    "Text": "Drive Back to the Portola",
+                    "Target": "Portola"
                 },
                 {
                     "Text": "South",
@@ -52,7 +108,7 @@
             ]
         },
         "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+            "Body": "UC Santa Cruz, this is where I am now!"
         }
     }
 }
