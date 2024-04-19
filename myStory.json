@@ -89,8 +89,9 @@
                 {
                     "Text": "Talked with someone?",
                     "Target": "Garden Creamery",
-                    "NeedsKey": "ShawnTalk",
-                    "LockedMessage": "Have you talked to Shawn?"
+                    "NeedsKey": "ShawnKey",
+                    "LockedMessage": "Have you talked to Shawn in the Mission?",
+                    "Target2": "Portola"
                 }
             ]
         },

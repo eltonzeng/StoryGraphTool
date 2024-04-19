@@ -10,14 +10,11 @@ class Start extends Scene {
     }
 }
 
-let flag = 0;
 
 class Location extends Scene {
-
+    static myKeys = false;
+    
     create(key) {
-        if (this.myKeys == undefined) {
-            this.myKeys = {};
-        }
         let locationData = this.engine.storyData.Locations[key]; // TODO: use `key` to get the data object for the current story location
         this.engine.show(locationData.Body); // TODO: replace this text by the Body of the location data
         
@@ -32,39 +29,32 @@ class Location extends Scene {
     }
 
     handleChoice(choice) {
-        console.log(flag);
+        
         if(choice) {
-            if (choice.Key) {
-                this.myKeys[choice.Key] = true;
-                this.engine.show(choice.KeyText);
-            }
-            if (choice.NeedsKey) {
-                let key_text = choice.NeedsKey;
-                if (this.myKeys[key_text]) {
-                    this.engine.gotoScene(Location, choice.Target)
-                } else {
-                    this.engine.show(choice.LockedMessage);
+            if (choice.Key) {                                       // if choice.key is not null (i.e., I have a Key property) then
+                //Location.myKeys.push(choice.Key);                       //    set a global variable that I have this key myKeys[keyname] = true
+
+                Location.myKeys = true;
+                this.engine.show(choice.KeyText);                   //    display the key text from choice.KeyText
+            }                                                       
+            if (choice.NeedsKey) {                                  // if choice.NeedsKey then
+                //let key_text = choice.NeedsKey;                     //     get the name of the required key from needsKey
+
+                if (Location.myKeys === true) {                        //     if myKeys[required keyname] is true then
+                    this.engine.gotoScene(Location, choice.Target)  //        go to new location
+                } else {                                            //    else
+                    this.engine.show(choice.LockedMessage);         //  display locked message from choice.lockedmessage
+                    console.log("locked message");
+                    this.engine.gotoScene(Location, choice.Target2)
                 }
             }
-            // if choice.key is not null (i.e., I have a Key property) then
-            //    set a global variable that I have this key myKeys[keyname] = true
-            //    display the key text from choice.KeyText
-            // if choice.NeedsKey then
-            //     get the name of the required key from needsKey
-            //    if myKeys[required keyname] is true then
-            //        go to new location
-            //    else
-            //        display locked message from choice.lockedmessage
-            if (choice.Action === "eatTomatoEgg") {
+
+            if (choice.Action === "eatTomatoEgg") { 
                 this.eatTomatoEgg();
                 this.engine.gotoScene(Location, choice.Target);
-            } else if (choice.locationData === "Garden Creamery" && flag === 1) {
-                this.engine.show(locationData.Unlocked_Message);
-            } else if (choice.locationData === "Garden Creamery" && flag != 1) {
-                this.engine.show(locationData.Locked_Message);
-            }else {
-            this.engine.show("&gt; "+choice.Text);
-            this.engine.gotoScene(Location, choice.Target);
+            } else if (!choice.NeedsKey) {
+                this.engine.show("&gt; "+choice.Text);
+                this.engine.gotoScene(Location, choice.Target);
             }
         } else {
             this.engine.gotoScene(End);
